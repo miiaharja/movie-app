@@ -1,3 +1,10 @@
+import { Layout } from "./layout/Layout";
+import { PopularMovies } from "./routes/PopularMovies";
+
 export function App() {
-  return <div>test</div>;
+  return (
+    <Layout>
+      <PopularMovies />
+    </Layout>
+  );
 }
