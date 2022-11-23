@@ -1,5 +1,5 @@
-import { Layout } from "./layout/Layout";
-import { PopularMovies } from "./routes/PopularMovies";
+import { Layout } from "./components/layout/Layout";
+import { PopularMovies } from "./components/routes/PopularMovies";
 
 export function App() {
   return (

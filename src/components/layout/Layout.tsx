@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
+import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 type Props = {
@@ -11,6 +12,7 @@ export const Layout = ({ children }: Props) => {
     <Box>
       <Header />
       <Box component="main">{children}</Box>
+      <Footer />
     </Box>
   );
 };

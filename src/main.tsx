@@ -7,6 +7,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { theme } from "./theme";
+import "./i18n/i18n";
 
 const container = document.getElementById("root");
 const root = createRoot(container as HTMLElement);
