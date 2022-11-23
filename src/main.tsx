@@ -9,12 +9,15 @@ import "@fontsource/roboto/700.css";
 import { useAppTheme } from "./useAppTheme";
 import "./i18n/i18n";
 import { Root } from "./Root";
+import { ColorModeProvider } from "./providers/ColorModeProvider";
 
 const container = document.getElementById("root");
 const root = createRoot(container as HTMLElement);
 
 root.render(
   <React.StrictMode>
-    <Root />
+    <ColorModeProvider>
+      <Root />
+    </ColorModeProvider>
   </React.StrictMode>,
 );
