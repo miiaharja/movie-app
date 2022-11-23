@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Drawer } from "@mui/material";
+import { Box, Button, ButtonGroup, Drawer, useTheme } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -9,10 +9,17 @@ type Props = {
 
 export const SettingsDrawer = ({ drawerOpen, onClose }: Props) => {
   const { t } = useTranslation();
+  const theme = useTheme();
 
   return (
-    <Drawer anchor="right" open={drawerOpen} onClose={onClose} sx={{ color: "secondary" }}>
-      <Box sx={{ color: "secondary" }}>
+    <Drawer
+      anchor="right"
+      // PaperProps={{ sx: { bgcolor: theme.palette.secondary.dark } }}
+      open={drawerOpen}
+      onClose={onClose}
+      sx={{ bgcolor: "secondary" }}
+    >
+      <Box sx={{ bgcolor: "secondary" }}>
         <ButtonGroup variant="outlined" sx={{ color: "secondary" }}>
           <Button>{t("system.light")}</Button>
           <Button>{t("system.system")}</Button>
