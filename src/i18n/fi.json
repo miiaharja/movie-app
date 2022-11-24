@@ -4,6 +4,10 @@
       "light": "Vaalea",
       "system": "Oletus",
       "dark": "Tumma"
+    },
+    "nav": {
+      "popular": "Suosituimmat",
+      "top-rated": "Parhaimmat"
     }
   }
 }

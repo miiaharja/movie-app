@@ -11,20 +11,35 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  useTheme,
 } from "@mui/material";
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import { SettingsDrawer } from "./SettingsDrawer";
+import { useAppTheme } from "../../useAppTheme";
 
-const pages = ["Popular", "Top Rated"];
+type NavItem = {
+  to: string;
+  label: string;
+};
 
 export const Header = () => {
+  const theme = useTheme();
   const { t } = useTranslation();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [drawerToggle, setDrawerToggle] = useState(false);
+
+  const navItems: NavItem[] = useMemo(
+    () => [
+      { to: "/", label: t("nav.popular") },
+      { to: "/top-rated", label: t("nav.top-rated") },
+    ],
+    [t],
+  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -68,18 +83,10 @@ export const Header = () => {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
@@ -96,9 +103,9 @@ export const Header = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {navItems.map((navItem) => (
+                <MenuItem key={navItem.label} component={NavLink} to={navItem.to} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{navItem.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -123,15 +130,21 @@ export const Header = () => {
             MOVIE APP
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
-                {page}
+            {navItems.map((navItem) => (
+              <Button
+                key={navItem.label}
+                onClick={handleCloseNavMenu}
+                component={NavLink}
+                to={navItem.to}
+                sx={{ my: 2, color: "white", display: "block", "&.active": { color: theme.palette.secondary.main } }}
+              >
+                {navItem.label}
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title={t("system.open-settings").toString()}>
               <IconButton onClick={handleDrawerToggle(true)} sx={{ p: 0 }}>
                 <SettingsIcon />
               </IconButton>

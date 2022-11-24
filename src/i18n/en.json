@@ -3,7 +3,12 @@
     "system": {
       "light": "Light",
       "system": "System",
-      "dark": "Dark"
+      "dark": "Dark",
+      "open-settings": "Open settings"
+    },
+    "nav": {
+      "popular": "Popular",
+      "top-rated": "Top rated"
     }
   }
 }
