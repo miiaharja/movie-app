@@ -67,8 +67,8 @@ export const Header = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
+            component={NavLink}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -104,7 +104,13 @@ export const Header = () => {
               }}
             >
               {navItems.map((navItem) => (
-                <MenuItem key={navItem.label} component={NavLink} to={navItem.to} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={navItem.label}
+                  component={NavLink}
+                  to={navItem.to}
+                  onClick={handleCloseNavMenu}
+                  sx={{ "&.active": { color: theme.palette.secondary.main } }}
+                >
                   <Typography textAlign="center">{navItem.label}</Typography>
                 </MenuItem>
               ))}
@@ -114,8 +120,8 @@ export const Header = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component={NavLink}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
